@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class MarkCartAsAbandonedJob
   include Sidekiq::Job
 
   queue_as :default
 
-  def perform(*args)
+  def perform(*_args)
     mark_carts_as_abandoned
     remove_abandoned_carts
   end

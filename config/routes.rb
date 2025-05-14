@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
@@ -7,12 +9,12 @@ Rails.application.routes.draw do
   resources :products, defaults: { format: :json }
 
   scope :cart, defaults: { format: :json } do
-    post "/", to: "carts#create"
-    get "/", to: "carts#show"
-    post "/add_item", to: "carts#add_item"
-    delete "/:product_id", to: "carts#remove_product"
+    post '/', to: 'carts#create'
+    get '/', to: 'carts#show'
+    post '/add_item', to: 'carts#add_item'
+    delete '/:product_id', to: 'carts#remove_product'
   end
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'up' => 'rails/health#show', as: :rails_health_check
 
-  root "rails/health#show"
+  root 'rails/health#show'
 end
