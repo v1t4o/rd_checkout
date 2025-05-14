@@ -1,0 +1,80 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/cart":
+    post:
+      summary: create cart
+      responses:
+        '201':
+          description: successful
+    get:
+      summary: show cart
+      responses:
+        '200':
+          description: successful
+  "/cart/add_item":
+    post:
+      summary: add_item cart
+      responses:
+        '200':
+          description: successful
+  "/cart/{product_id}":
+    parameters:
+    - name: product_id
+      in: path
+      description: product_id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: remove_product cart
+      responses:
+        '200':
+          description: successful
+  "/products":
+    get:
+      summary: list products
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create product
+      responses:
+        '200':
+          description: successful
+  "/products/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show product
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update product
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update product
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete product
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

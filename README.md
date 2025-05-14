@@ -214,5 +214,17 @@ Executar os testes:
 bundle exec rspec
 ```
 
+## Executando a app com docker
+
+Para subir a aplicação:
+```bash
+make web
+```
+
+Para rodar os testes:
+```bash
+make test
+```
+
 ### Como enviar seu projeto
 Salve seu código em um versionador de código (GitHub, GitLab, Bitbucket) e nos envie o link publico. Se achar necessário, informe no README as instruções para execução ou qualquer outra informação relevante para correção/entendimento da sua solução.
