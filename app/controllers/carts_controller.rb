@@ -16,7 +16,7 @@ class CartsController < ApplicationController
       save_cart_item_and_render(:created)
     end
   rescue ActiveRecord::RecordNotFound
-    render_json({ error: 'The product is not found.' }, :not_found)
+    render_json({ error: I18n.t('product.not_found') }, :not_found)
   rescue StandardError => e
     render_json({ error: e }, :bad_request)
   end
@@ -28,7 +28,8 @@ class CartsController < ApplicationController
   def add_item
     ActiveRecord::Base.transaction do
       if cart_params[:quantity].to_i < 1
-        return render_json({ quantity: ['must be greater than or equal to 1'] }, :unprocessable_entity)
+        msg = I18n.t('cart_item.quantity.greater_than_or_equal_to', count: 1)
+        return render_json({ quantity: [msg] }, :unprocessable_entity)
       end
 
       @cart_item.quantity += cart_params[:quantity].to_i
@@ -52,7 +53,7 @@ class CartsController < ApplicationController
   def set_cart
     @cart = Cart.find(session[:cart_id])
   rescue ActiveRecord::RecordNotFound
-    render_json({ error: 'Cart is not found.' }, :not_found)
+    render_json({ error: I18n.t('cart.not_found') }, :not_found)
   end
 
   def find_or_create_cart
@@ -62,13 +63,13 @@ class CartsController < ApplicationController
 
     session[:cart_id] = @cart.id if cart_id.nil?
   rescue ActiveRecord::RecordNotFound
-    render_json({ error: 'Cart is not found.' }, :not_found)
+    render_json({ error: I18n.t('cart.not_found') }, :not_found)
   end
 
   def set_cart_item
     @cart_item = @cart.cart_items.find_by(product_id: cart_params[:product_id])
 
-    render_json({ error: 'The product is not found in the cart.' }, :not_found) unless @cart_item
+    render_json({ error: I18n.t('cart_item.product.not_found') }, :not_found) unless @cart_item
   end
 
   def cart_params
@@ -106,7 +107,7 @@ class CartsController < ApplicationController
   def check_if_product_is_already_in_the_cart(product)
     return false unless @cart.cart_items.find_by(product: product)
 
-    msg = 'The product is already in the cart. To update item, use route POST /cart/add_item.'
+    msg = I18n.t('cart.product.founded_in_the_cart')
     render_unprocessable_entity({ error: msg })
     true
   end

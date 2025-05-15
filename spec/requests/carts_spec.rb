@@ -38,7 +38,7 @@ RSpec.describe CartsController, type: :controller do
 
           response_body = JSON.parse(response.body)
           expect(response_body['error']).to eq(
-            'The product is already in the cart. To update item, use route PUT /cart/add_item.'
+            'The product is already in the cart. To update item, use route POST /cart/add_item.'
           )
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including('application/json'))

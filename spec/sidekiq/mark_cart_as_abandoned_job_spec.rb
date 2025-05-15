@@ -45,7 +45,7 @@ RSpec.describe MarkCartAsAbandonedJob, type: :job do
 
         abandoned_carts.each do |cart|
           expect(Rails.logger).to have_received(:info)
-            .with("Carrinho #{cart.id} marcado como abandonado.").once
+            .with(I18n.t('job.mark_carts_as_abandoned', id: cart.id)).once
         end
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe MarkCartAsAbandonedJob, type: :job do
 
         to_remove_carts.each do |cart|
           expect(Rails.logger).to have_received(:info)
-            .with("Carrinho #{cart.id} abandonado há mais de 7 dias removido.").once
+            .with(I18n.t('job.remove_abandoned_carts', id: cart.id)).once
         end
       end
     end

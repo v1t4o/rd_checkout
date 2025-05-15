@@ -28,4 +28,20 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  cart_item:
+    quantity:
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+    product:
+      not_found: The product is not found in the cart.
+
+  cart:
+    not_found: Cart is not found.
+    product:
+      founded_in_the_cart: The product is already in the cart. To update item, use route POST /cart/add_item.
+
+  product:
+    not_found: The product is not found.
+
+  job:
+    mark_carts_as_abandoned: Cart %{id} marked as abandoned.
+    remove_abandoned_carts: Cart %{id} abandoned more than 7 days removed.

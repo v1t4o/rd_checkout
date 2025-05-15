@@ -15,14 +15,14 @@ class MarkCartAsAbandonedJob
   def mark_carts_as_abandoned
     Cart.search_for_carts_abandoned.each do |cart|
       cart.mark_as_abandoned
-      Rails.logger.info "Carrinho #{cart.id} marcado como abandonado."
+      Rails.logger.info I18n.t('job.mark_carts_as_abandoned', id: cart.id)
     end
   end
 
   def remove_abandoned_carts
     Cart.search_for_carts_to_remove.each do |cart|
       cart.remove_if_abandoned
-      Rails.logger.info "Carrinho #{cart.id} abandonado há mais de 7 dias removido."
+      Rails.logger.info I18n.t('job.remove_abandoned_carts', id: cart.id)
     end
   end
 end
