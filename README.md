@@ -200,7 +200,7 @@ make web
 
 Para rodar os testes:
 ```bash
-make test
+make tests
 ```
 
 ## Executando a app sem o docker
