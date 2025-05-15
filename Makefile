@@ -3,3 +3,6 @@ web:
 
 tests:
 	@docker-compose up test
+
+quality:
+	@bundle exec rubocop

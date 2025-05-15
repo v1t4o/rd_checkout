@@ -203,6 +203,11 @@ Para rodar os testes:
 make tests
 ```
 
+Para rodar qualidade de código:
+```bash
+make quality
+```
+
 ## Executando a app sem o docker
 Dado que todas as as ferramentas estão instaladas e configuradas:
 
